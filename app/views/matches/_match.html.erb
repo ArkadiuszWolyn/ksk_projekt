@@ -1,0 +1,64 @@
+<%= link_to 'Back', matches_path(), class: 'btn btn-xs btn-primary my-1' %>
+<%= link_to 'Edit',
+            edit_match_path(match), :class => 'btn btn-default btn-xs' %>
+<%= link_to 'Destroy', match_path(match),
+            :data => { method: :delete, :confirm =>  'Are you sure?' },
+            :class => 'btn btn-xs btn-danger' %>
+
+<div id="<%= dom_id match %>">
+  <p>
+    <h1>Match</h1> </br></br>
+    <strong><%= match.first_team %></strong>
+    <%= match.first_team_score %>
+    :
+    <%= match.second_team_score %>
+    <strong><%= match.secod_team %></strong>
+  </p>
+
+  <h1>Match</h1> </br></br>
+
+  <div class="container-fluid table-bordered">
+    <div class="row">                                           
+          <!-- Need to add theme, buttons -->                       
+        <div class="col-xs-12">
+         Tu kiedyś powstanie przedstwaianie wszystkich wydarzeń z meczu na rzywo 
+        </div>          
+    </div>
+</div></br></br>
+
+<div align="left">
+  <h1>Comments</h1> </br></br>
+  <% if @match.comments.any? %>
+    <h3>Komentarze:</h3>
+    <% @match.comments.each do |comment| %>
+      <% if comment.author? %>
+      <p><h2><%= comment.author %></h2></p>
+      <p> <h3><%= comment.title %></h3> </br><%= comment.content %></p>
+      --------------------------------------------------
+      <% end %>
+    <% end %>
+  <% end %>
+
+
+
+
+<h1>Add new comment</h1>
+<%= form_with(model: [ @match, Comment.new ]) do |form| %>
+<div>
+    <%= form.label :author, style: "display: block" %>
+    <%= form.text_field :author %>
+</div>
+<div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :content, style: "display: block" %>
+    <%= form.text_field :content %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,33 @@
+<%= form_with(model: match) do |form| %>
+  <% if match.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+      <ul>
+        <% match.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <div>
+      <%= "_______First team ___________First team score_________Second team score________Second team_____" %>
+      
+
+
+    </div>
+
+    <div>
+    <%= form.text_field :first_team %>
+    <%= form.number_field :first_team_score %>
+    vs.
+    <%= form.number_field :second_team_score %>
+    <%= form.text_field :secod_team %>
+    </div>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
